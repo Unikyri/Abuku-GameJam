@@ -12,6 +12,10 @@ public class SequenceManager : MonoBehaviour
     }
     public void ObjectClicked(SelectObject obj)
     {
+        if (sequence == null || sequence.Length == 0 || index >= sequence.Length)
+        {
+            return;
+        }
         if(obj == sequence[index])
         {
             Debug.Log("Correcto: " + obj.name);

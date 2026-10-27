@@ -6,9 +6,9 @@ Juego narrativo 2D de puzles sobre un personaje atrapado en un bucle temporal. E
 
 1. Instala **Unity 6000.3.27f1 (Unity 6.3 LTS)** desde Unity Hub. Todo el equipo debe usar esa versión.
 2. Después del primer push, clona [el repositorio](https://github.com/Unikyri/Abuku-GameJam) y agrega en Unity Hub la carpeta que contiene `Assets`, `Packages` y `ProjectSettings`.
-3. Espera la importación, abre `Assets/_Game/Scenes/Library.unity` y prueba la escena en Play.
+3. Espera la importación, abre `Assets/_Game/Scenes/Prueba.unity` y prueba la escena en Play.
 
-Usamos la plantilla Universal 2D, URP y 2D Renderer. La escena es una copia inicial de la plantilla y todavía no tiene mecánicas. En Build Settings sigue seleccionada `SampleScene`; hay que cambiarla por `Library` antes de generar la build.
+Usamos la plantilla Universal 2D, URP y 2D Renderer. `Prueba` es la escena provisional y está seleccionada para la build.
 
 Las responsabilidades y el flujo de trabajo están en [Colaboración](Docs/Collaboration.md).
 

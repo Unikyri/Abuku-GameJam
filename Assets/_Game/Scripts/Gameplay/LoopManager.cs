@@ -6,6 +6,7 @@ public class LoopManager : MonoBehaviour
     public static LoopManager Instance;
     public static int loopCount = 0;
     [SerializeField] private float timeUntilKiller = 30f;
+    private bool escaped;
     
     void Awake()
     {
@@ -28,7 +29,14 @@ public class LoopManager : MonoBehaviour
     public void Escape()
     {
         CancelInvoke();
+        escaped = true;
         Debug.Log("ganaste, n intentos"+ loopCount);
-        SceneManager.LoadScene("Victoria");
+    }
+
+    void OnGUI()
+    {
+        if (!escaped) return;
+        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 32 };
+        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You survived!", style);
     }
 }
