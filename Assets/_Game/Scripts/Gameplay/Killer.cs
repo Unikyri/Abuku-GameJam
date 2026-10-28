@@ -27,6 +27,7 @@ public class Killer : MonoBehaviour
 
     public void Enter()
     {
+        if (LoopManager.Instance != null && LoopManager.Instance.Finished) return;
         gameObject.SetActive(true);
         StartCoroutine(Attack());
     }
@@ -64,7 +65,7 @@ public class Killer : MonoBehaviour
 
         
         yield return new WaitForSeconds(aimTime);
-        if(LoopManager.Instance.Escaped)
+        if (LoopManager.Instance == null || LoopManager.Instance.Finished)
         {
             yield break; 
         }
@@ -74,12 +75,12 @@ public class Killer : MonoBehaviour
 
         if (protagonist != null)
         {
-            gunshotAudio.Play();
+            if (gunshotAudio != null) gunshotAudio.Play();
             protagonist.Die();
         }
 
         yield return new WaitForSeconds(deathDelay);
         yield return new WaitForSeconds(timeAfterLoop);
-        LoopManager.Instance.PlayerKilled();
+        if (LoopManager.Instance != null) LoopManager.Instance.PlayerKilled();
     }
 }

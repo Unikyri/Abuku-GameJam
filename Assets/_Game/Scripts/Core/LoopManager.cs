@@ -9,7 +9,9 @@ public class LoopManager : MonoBehaviour
     [SerializeField] private TimeRewindAudio timeRewindAudio; //comunicación con controlador de audio
     [SerializeField] private VictoryScreenController victoryScreen;
     private bool escaped;
+    private bool dead;
     public bool Escaped => escaped;
+    public bool Finished => escaped || dead;
     [SerializeField] private Killer killer;
 
     
@@ -27,18 +29,31 @@ public class LoopManager : MonoBehaviour
 
     public void PlayerKilled()
     {
+        if (Finished) return;
+        dead = true;
+        CancelInvoke();
         Debug.Log("El asesino te atrapo");
         loopCount++;
         
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-        timeRewindAudio.PlayRewind();
+        if (timeRewindAudio != null)
+        {
+            timeRewindAudio.PlayRewind();
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void Escape()
     {
+        if (Finished) return;
         CancelInvoke();
         escaped = true;
+       if (killer == null) killer = FindFirstObjectByType<Killer>(FindObjectsInactive.Include);
        if (killer != null)
       {
          Destroy(killer.gameObject);
@@ -47,7 +62,7 @@ public class LoopManager : MonoBehaviour
       
         Debug.Log("ganaste, n intentos"+ loopCount);
 
-        victoryScreen.ShowVictory();
+        if (victoryScreen != null) victoryScreen.ShowVictory();
     }
 
     /*void OnGUI()

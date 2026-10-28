@@ -86,6 +86,8 @@ public class PauseMenuController : MonoBehaviour
     
     private void Update()
     {
+        if (LoopManager.Instance != null && LoopManager.Instance.Finished) return;
+
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (isPaused)
@@ -112,7 +114,7 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1f;
 
         pauseContent.style.display = DisplayStyle.Flex;
-        buttonAudioSource.Play();
+        if (buttonAudioSource != null) buttonAudioSource.Play();
         pauseOptionsContent.style.display = DisplayStyle.None;
 
         pauseRoot.style.display = DisplayStyle.None;
@@ -125,7 +127,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void OpenOptions()
     {
-        buttonAudioSource.Play();
+        if (buttonAudioSource != null) buttonAudioSource.Play();
 
         pauseContent.style.display = DisplayStyle.None;
         pauseOptionsContent.style.display = DisplayStyle.Flex;
@@ -133,7 +135,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void BackToPause()
     {
-        buttonAudioSource.Play();
+        if (buttonAudioSource != null) buttonAudioSource.Play();
 
         pauseOptionsContent.style.display = DisplayStyle.None;
         pauseContent.style.display = DisplayStyle.Flex;
@@ -151,7 +153,7 @@ public class PauseMenuController : MonoBehaviour
 
     private IEnumerator PlayAndReturnToMenu()
     {
-        buttonAudioSource.Play();
+        if (buttonAudioSource != null) buttonAudioSource.Play();
 
         yield return new WaitForSecondsRealtime(0.2f);
 
