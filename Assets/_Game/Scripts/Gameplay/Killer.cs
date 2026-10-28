@@ -21,6 +21,7 @@ public class Killer : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+         spriteRenderer.enabled = false;
         //muzzleFlash.SetActive(false);
     }
 
@@ -41,12 +42,12 @@ public class Killer : MonoBehaviour
         }
 
         yield return new WaitForSeconds(waitBehindDoor);
-
+       
         if (door != null)
         {
             door.Open();
         }
-
+        spriteRenderer.enabled = true;
         while (transform.position.x > stopX)
         {
             transform.position = Vector2.MoveTowards(
