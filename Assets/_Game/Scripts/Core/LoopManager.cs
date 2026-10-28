@@ -50,11 +50,11 @@ public class LoopManager : MonoBehaviour
         victoryScreen.ShowVictory();
     }
 
-    void OnGUI()
+    /*void OnGUI()
     {
         if (!escaped) return;
         var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 32 };
         GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You survived!", style);
-    }
+    } */
     
 }

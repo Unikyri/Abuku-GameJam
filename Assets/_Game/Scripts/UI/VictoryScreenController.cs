@@ -1,39 +1,80 @@
+
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class VictoryScreenController : MonoBehaviour
 {
     private VisualElement root;
-
+    private Button restartButton;
+    private Button mainMenuButton;
+    [SerializeField] private AudioSource buttonAudio;
     void OnEnable()
     {
-        // Obtenemos la interfaz del UI Document.
+        // Obtenemos la interfaz de victoria.
         root = GetComponent<UIDocument>().rootVisualElement;
 
-        // La ocultamos cuando empieza el juego.
+        // Buscamos los botones por sus nombres en el UXML.
+        restartButton = root.Q<Button>("restart-button");
+        mainMenuButton = root.Q<Button>("main-menu-button");
+
+        // Conectamos las acciones de los botones.
+        restartButton.clicked += RestartGame;
+        mainMenuButton.clicked += ReturnToMenu;
+
+        // Ocultamos la pantalla al comenzar.
         root.style.display = DisplayStyle.None;
     }
 
-    // LoopManager llamará a este método cuando el jugador escape.
-    public void ShowVictory()
+    void OnDisable()
     {
-        // Mostramos la pantalla de victoria.
-        root.style.display = DisplayStyle.Flex;
+        // Evitamos dejar eventos registrados al desactivar el objeto.
+        if (restartButton != null)
+            restartButton.clicked -= RestartGame;
 
-        // Pausamos el juego para que el protagonista
-        // y el asesino dejen de moverse.
+        if (mainMenuButton != null)
+            mainMenuButton.clicked -= ReturnToMenu;
+    }
+
+    public void ShowVictory()
+    {       
+        root.style.display = DisplayStyle.Flex;       
         Time.timeScale = 0f;
     }
 
-    void Update()
+    private void RestartGame()
     {
-        // PRUEBA TEMPORAL:
-        // Detecta F8 utilizando el nuevo Input System.
-        if (UnityEngine.InputSystem.Keyboard.current != null &&
-            UnityEngine.InputSystem.Keyboard.current.f8Key.wasPressedThisFrame)
+        // Reiniciamos el contador de bucles.
+        LoopManager.loopCount = 0;
+
+        // Reproduce el sonido y después reinicia Library.
+        StartCoroutine(ChangeSceneWithSound("Library"));
+    }
+
+    private void ReturnToMenu()
+    {
+        // Reiniciamos el contador de bucles.
+        LoopManager.loopCount = 0;
+
+        // Reproduce el sonido y después vuelve al menú.
+        StartCoroutine(ChangeSceneWithSound("UI_Test"));
+    }
+
+  
+ 
+    private System.Collections.IEnumerator ChangeSceneWithSound(string sceneName)
+    {
+        if (buttonAudio != null)
         {
-            // Muestra la pantalla de victoria.
-            ShowVictory();
+            buttonAudio.Play();
         }
+
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        // Restauramos el tiempo antes de cargar otra escena.
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(sceneName);
     }
 }
