@@ -57,10 +57,13 @@ public class SelectObject : MonoBehaviour
         if(over != isHovering)
         {
             isHovering = over;
-            spriteRenderer.color = over ? hoverColor : originalColor;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = over ? hoverColor : originalColor;
+            }
         }
 
-        if(over && Mouse.current.leftButton.wasPressedThisFrame)
+        if(over && Mouse.current.leftButton.wasPressedThisFrame && PlayerMovement.Instance != null)
         {
             PlayerMovement.Instance.GoToObject(this);
         }
