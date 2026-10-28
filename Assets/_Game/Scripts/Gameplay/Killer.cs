@@ -9,6 +9,7 @@ public class Killer : MonoBehaviour
     [SerializeField] private float aimTime = 0.6f;
     [SerializeField] private float deathDelay = 0.6f;
     [SerializeField] private float waitBehindDoor = 1f;
+    [SerializeField] private float timeAfterLoop = 2f;
     [SerializeField] private ProtagonistAnimation protagonist;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Door door;
@@ -19,7 +20,7 @@ public class Killer : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        muzzleFlash.SetActive(false);
+        //muzzleFlash.SetActive(false);
     }
 
     public void Enter()
@@ -45,15 +46,16 @@ public class Killer : MonoBehaviour
         while (transform.position.x > stopX)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(stopX, transform.position.y), enterSpeed * Time.deltaTime);
-            
-            spriteRenderer.sprite = runKiller[0];
-            spriteRenderer.sprite = runKiller[1];
+           spriteRenderer.sprite = runKiller[(int)(Time.time / 0.15f) % runKiller.Length];
             
             yield return null;
         }
 
         yield return new WaitForSeconds(aimTime);
-
+        if(LoopManager.Instance.Escaped)
+        {
+            yield break; 
+        }
         //spriteRenderer.color = new Color(0.7f, 0.1f, 0.1f);
       
         spriteRenderer.sprite = IdleKiller;
@@ -64,7 +66,7 @@ public class Killer : MonoBehaviour
         }
 
         yield return new WaitForSeconds(deathDelay);
-
-        Time.timeScale = 0f;
+        yield return new WaitForSeconds(timeAfterLoop);
+        LoopManager.Instance.PlayerKilled();
     }
 }
