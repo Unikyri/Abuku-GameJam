@@ -5,10 +5,11 @@ public class SpeechBubble : MonoBehaviour
 {
     [SerializeField] private GameObject bubble;
     [SerializeField] private TextMesh bubbleText;
+    [SerializeField] private Killer killer;
     [SerializeField] private string message = "¿Qué? ¿Dónde estoy?\n¿Qué pasa?";
-    [SerializeField] private float waitTime = 3f;
+    [SerializeField] private float waitTime = 1f;
     [SerializeField] private float letterTime = 0.05f;
-    [SerializeField] private float timeVisible = 7f;
+    [SerializeField] private float timeVisible = 2f;
 
     void Start()
     {
@@ -39,5 +40,10 @@ public class SpeechBubble : MonoBehaviour
     void HideBubble()
     {
         bubble.SetActive(false);
+
+        if (killer != null)
+        {
+            killer.Enter();
+        }
     }
 }

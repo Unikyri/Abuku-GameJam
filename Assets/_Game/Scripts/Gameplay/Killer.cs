@@ -1,0 +1,56 @@
+using System.Collections;
+using UnityEngine;
+
+public class Killer : MonoBehaviour
+{
+    [SerializeField] private float enterSpeed = 5f;
+    [SerializeField] private float stopX = 3.5f;
+    [SerializeField] private float stopY = 0;
+    [SerializeField] private float aimTime = 0.6f;
+    [SerializeField] private float flashTime = 0.15f;
+    [SerializeField] private float waitBehindDoor = 1f;
+    [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private Door door;
+    private SpriteRenderer spriteRenderer;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        muzzleFlash.SetActive(false);
+    }
+
+    public void Enter()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(Attack());
+    }
+
+    IEnumerator Attack()
+    {
+        if (door != null)
+        {
+            transform.position = new Vector2(door.transform.position.x, transform.position.y);
+        }
+
+        yield return new WaitForSeconds(waitBehindDoor);
+
+        if (door != null)
+        {
+            door.Open();
+        }
+
+        while (transform.position.x > stopX)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(stopX, transform.position.y), enterSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(aimTime);
+
+        spriteRenderer.color = new Color(0.7f, 0.1f, 0.1f);
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(flashTime);
+
+        Time.timeScale = 0f;
+    }
+}
