@@ -8,6 +8,8 @@ public class LoopManager : MonoBehaviour
     [SerializeField] private float timeUntilKiller = 10f;
     private bool escaped;
     public bool Escaped => escaped;
+    [SerializeField] private Killer killer;
+
     
     void Awake()
     {
@@ -32,6 +34,12 @@ public class LoopManager : MonoBehaviour
     {
         CancelInvoke();
         escaped = true;
+       if (killer != null)
+      {
+         Destroy(killer.gameObject);
+      }
+
+      
         Debug.Log("ganaste, n intentos"+ loopCount);
     }
 
