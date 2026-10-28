@@ -62,7 +62,7 @@ public class SelectObject : MonoBehaviour
 
         if(over && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            SequenceManager.Instance.ObjectClicked(this);
+            PlayerMovement.Instance.GoToObject(this);
         }
     }
 }
