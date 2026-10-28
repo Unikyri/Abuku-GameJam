@@ -1,0 +1,20 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Game/UI/USS/PauseMenu.uss?fileID=7433441132597879392&amp;guid=4e0e271f3ed50fd499cbbb28ec8c2989&amp;type=3#PauseMenu"/>
+    <Style src="project://database/Assets/_Game/UI/USS/MainMenu.uss?fileID=7433441132597879392&amp;guid=efab7cc7c96ada7479d5ce489911a045&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="pause-root" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.502);">
+        <ui:VisualElement name="pause-panel" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/_Game/UI/Sprites/PaperPanel.png?fileID=2800000&amp;guid=316095bc54bc81c40b9470b8ea8cebdc&amp;type=3#PaperPanel&quot;); width: 45%; height: 85%; align-items: center; justify-content: center;">
+            <ui:VisualElement name="pause-content" style="flex-grow: 1; width: 75%; height: 100%; align-items: center; justify-content: center; display: flex;">
+                <ui:Label text="Pausa" name="pause-title" class="game-title"/>
+                <ui:Button text="Continuar" name="resume-button" class="menu-button" style="-unity-background-image-tint-color: rgb(188, 212, 129);"/>
+                <ui:Button text="Opciones" name="pause-options-button" class="menu-button" style="-unity-background-image-tint-color: rgb(245, 217, 159);"/>
+                <ui:Button text="Menu principal" name="main-menu-button" class="menu-button" style="font-size: 30px; -unity-background-image-tint-color: rgb(236, 190, 177);"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="pause-options-content" style="flex-grow: 1; display: none; align-items: center; justify-content: center; width: 80%; height: 100%;">
+                <ui:Label text="Opciones" name="options-title" style="font-size: 48px; -unity-text-align: middle-center; color: rgb(88, 59, 50); margin-bottom: 40px; margin-top: 0; margin-right: 0; margin-left: 0; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&amp;guid=2c57114ee5b8f3d44a9f3674ad34a97b&amp;type=3#Sketch&quot;);"/>
+                <ui:Slider label="Musica" value="50" high-value="100" name="music-slider" style="width: 300px; height: 40px;"/>
+                <ui:Slider label="Efectos" value="50" high-value="100" name="sfx-slider" style="width: 300px; height: 40px; margin-top: 20px;"/>
+                <ui:Button text="Volver" name="back-button" class="menu-button" style="width: 220px; height: 55px; margin-top: 45px;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,76 @@
+:root {
+}
+
+#main-menu-root {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+.library-panel {
+    width: 60%;
+    height: 100%;
+    flex-shrink: 0;
+    background-color: rgb(70, 91, 96);
+}
+
+.menu-panel {
+    flex-shrink: 0;
+    width: 40%;
+    height: 100%;
+    background-color: rgb(228, 209, 177);
+    -unity-font-definition: url("project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&guid=2c57114ee5b8f3d44a9f3674ad34a97b&type=3#Sketch");
+}
+
+.game-title {
+    font-size: 80px;
+    color: rgb(87, 60, 65);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 24px;
+    -unity-font-definition: url("project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&guid=2c57114ee5b8f3d44a9f3674ad34a97b&type=3#Sketch");
+}
+
+.menu-button {
+    width: 65%;
+    height: 55px;
+    font-size: 40px;
+    -unity-text-align: middle-center;
+    margin-top: 16px;
+    background-image: url("project://database/Assets/_Game/UI/Sprites/Buttons/Jugar_Normal.png?fileID=2800000&guid=53db2106541e81a469d21d0d9fbb27c7&type=3#Jugar_Normal");
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0.412);
+    border-right-color: rgba(0, 0, 0, 0.412);
+    border-top-color: rgba(0, 0, 0, 0.412);
+    border-bottom-color: rgba(0, 0, 0, 0.412);
+    -unity-font-definition: url("project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&guid=2c57114ee5b8f3d44a9f3674ad34a97b&type=3#Sketch");
+    -unity-font-style: bold;
+}
+
+.menu-button:hover {
+    background-image: url("project://database/Assets/_Game/UI/Sprites/Buttons/Jugar_Hover.png?fileID=2800000&guid=43aeca6a21e049644bc8519209fa31bc&type=3#Jugar_Hover");
+}
+
+.menu-button:active {
+    background-image: url("project://database/Assets/_Game/UI/Sprites/Buttons/Jugar_Presionado.png?fileID=2800000&guid=0357323f171424c4ca691e764e4e3b04&type=3#Jugar_Presionado");
+}
+
+.unity-slider__label {
+    font-size: 32px;
+    color: rgb(88, 59, 50);
+    -unity-font-definition: url("project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&guid=2c57114ee5b8f3d44a9f3674ad34a97b&type=3#Sketch");
+    -unity-font-style: bold;
+}
+
+#options-panel .unity-base-slider__tracker {
+    color: rgb(167, 122, 75);
+    background-color: rgb(167, 122, 75);
+    -unity-font-definition: url("project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&guid=2c57114ee5b8f3d44a9f3674ad34a97b&type=3#Sketch");
+    -unity-font-style: normal;
+}
+
+#options-panel .unity-base-slider__dragger {
+    background-color: rgb(107, 66, 48);
+    -unity-font-definition: url("project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&guid=2c57114ee5b8f3d44a9f3674ad34a97b&type=3#Sketch");
+}

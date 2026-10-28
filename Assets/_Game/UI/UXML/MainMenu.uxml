@@ -1,0 +1,24 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Game/UI/USS/MainMenu.uss?fileID=7433441132597879392&amp;guid=efab7cc7c96ada7479d5ce489911a045&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="main-menu-root" style="flex-grow: 1; width: auto; height: auto;">
+        <ui:VisualElement name="library-panel" class="library-panel" style="background-image: url(&quot;project://database/Assets/_Game/UI/Sprites/Biblioteca%20m%C3%A1gica%20bajo%20la%20luz%20lunar.png?fileID=2800000&amp;guid=20f3630ee34f02344a10814886d9076d&amp;type=3#Biblioteca mágica bajo la luz lunar&quot;); -unity-background-scale-mode: scale-and-crop; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%;"/>
+        <ui:VisualElement name="menu-panel" class="menu-panel" style="background-color: rgba(228, 209, 177, 0); position: absolute; top: 0; right: 0; bottom: 0; left: auto; background-size: 40% 100%;">
+            <ui:VisualElement name="paper-background" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/_Game/UI/Sprites/PaperPanel.png?fileID=2800000&amp;guid=316095bc54bc81c40b9470b8ea8cebdc&amp;type=3#PaperPanel&quot;); -unity-background-scale-mode: scale-to-fit;">
+                <ui:VisualElement name="menu-content" style="flex-grow: 1; justify-content: center; align-items: center;">
+                    <ui:Label text="Echoes" name="game-tittle" class="game-title"/>
+                    <ui:Button text="Jugar" name="play-button" class="menu-button" style="-unity-background-image-tint-color: rgb(165, 178, 132);"/>
+                    <ui:Button text="Opciones" name="options-button" class="menu-button" style="-unity-background-image-tint-color: rgb(238, 207, 140);"/>
+                    <ui:Button text="Salir" name="exit-button" parse-escape-sequences="false" class="menu-button" style="-unity-background-image-tint-color: rgb(233, 160, 138);"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="options-panel" style="flex-grow: 1; position: absolute; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0, 0, 0, 0.647); align-items: center; justify-content: center; -unity-background-scale-mode: stretch-to-fill; display: none; -unity-font-definition: url(&quot;project://database/Assets/_Game/Art/Fonts/Sketch.ttf?fileID=12800000&amp;guid=2c57114ee5b8f3d44a9f3674ad34a97b&amp;type=3#Sketch&quot;);">
+            <ui:VisualElement name="options-content" style="flex-grow: 1; width: 680px; height: 550px; align-items: center; justify-content: center; background-image: url(&quot;project://database/Assets/_Game/UI/Sprites/PaperPanel.png?fileID=2800000&amp;guid=316095bc54bc81c40b9470b8ea8cebdc&amp;type=3#PaperPanel&quot;);">
+                <ui:Label text="Opciones" name="options-title" style="font-size: 48px; -unity-text-align: middle-center; color: rgb(88, 59, 50); margin-bottom: 40px; margin-top: 0; margin-right: 0; margin-left: 0; -unity-font-style: bold;"/>
+                <ui:Slider label="Musica" value="50" high-value="100" name="music-slider" style="width: 300px; height: 40px;"/>
+                <ui:Slider label="Efectos" value="50" high-value="100" name="sfx-slider" style="width: 300px; height: 40px; margin-top: 20px;"/>
+                <ui:Button text="Volver" name="back-button" class="menu-button" style="width: 220px; height: 55px; margin-top: 45px;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
