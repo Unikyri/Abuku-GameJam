@@ -6,6 +6,7 @@ public class LoopManager : MonoBehaviour
     public static LoopManager Instance;
     public static int loopCount = 0;
     [SerializeField] private float timeUntilKiller = 10f;
+    [SerializeField] private TimeRewindAudio timeRewindAudio; //comunicación con controlador de audio
     private bool escaped;
     
     void Awake()
@@ -23,7 +24,9 @@ public class LoopManager : MonoBehaviour
     {
         Debug.Log("El asesino te atrapo");
         loopCount++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        timeRewindAudio.PlayRewind();
     }
 
     public void Escape()

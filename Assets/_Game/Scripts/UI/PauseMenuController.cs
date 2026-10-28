@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class PauseMenuController : MonoBehaviour
     private Button optionsButton;
     private Button backButton;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioSource buttonAudioSource;
 
     private Slider musicSlider;
     private Slider sfxSlider;
@@ -81,7 +83,7 @@ public class PauseMenuController : MonoBehaviour
 
 
    
-    // Update is called once per frame
+    
     private void Update()
     {
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -110,6 +112,7 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1f;
 
         pauseContent.style.display = DisplayStyle.Flex;
+        buttonAudioSource.Play();
         pauseOptionsContent.style.display = DisplayStyle.None;
 
         pauseRoot.style.display = DisplayStyle.None;
@@ -117,19 +120,21 @@ public class PauseMenuController : MonoBehaviour
 
     private void ReturnToMainMenu()
     {
-        Time.timeScale = 1f;
-        isPaused = false;
-        SceneManager.LoadScene("UI_Test");
+        StartCoroutine(PlayAndReturnToMenu());
     }
 
     private void OpenOptions()
     {
+        buttonAudioSource.Play();
+
         pauseContent.style.display = DisplayStyle.None;
         pauseOptionsContent.style.display = DisplayStyle.Flex;
     }
 
     private void BackToPause()
     {
+        buttonAudioSource.Play();
+
         pauseOptionsContent.style.display = DisplayStyle.None;
         pauseContent.style.display = DisplayStyle.Flex;
     }
@@ -141,6 +146,17 @@ public class PauseMenuController : MonoBehaviour
 
         float normalizedVolume = volume / 100f;
         return 20f * Mathf.Log10(normalizedVolume);
+    }
+
+
+    private IEnumerator PlayAndReturnToMenu()
+    {
+        buttonAudioSource.Play();
+
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("UI_Test");
     }
 
 }
