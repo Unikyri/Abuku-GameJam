@@ -7,6 +7,9 @@ public class SpeechBubble : MonoBehaviour
     [SerializeField] private TextMesh bubbleText;
     [SerializeField] private Killer killer;
     [SerializeField] private string message = "¿Qué? ¿Dónde estoy?\n¿Qué pasa?";
+    [SerializeField] private string messageLoop = "Otra vez aquí...\nYa viví esto.";
+    [SerializeField] private string messageLoop2 = "¿Qué está pasando....?";
+    [SerializeField] private int lastLoopWithBubble = 2;
     [SerializeField] private float waitTime = 1f;
     [SerializeField] private float letterTime = 0.05f;
     [SerializeField] private float timeVisible = 2f;
@@ -15,12 +18,31 @@ public class SpeechBubble : MonoBehaviour
     {
         bubbleText.text = "";
         bubble.SetActive(false);
-        Invoke(nameof(ShowBubble), waitTime);
+
+        if(LoopManager.loopCount > lastLoopWithBubble)
+        {
+             Invoke(nameof(HideBubble), waitTime);
+        }else
+        {
+            Invoke(nameof(ShowBubble), waitTime);
+        }
+
     }
 
     void ShowBubble()
     {
-        bubble.SetActive(true);
+        if(LoopManager.loopCount == 1)
+        {
+            message = messageLoop;
+        }else if(LoopManager.loopCount >= 2)
+        {
+            message = messageLoop2;
+        }
+
+        
+           bubble.SetActive(true); 
+        
+        
         StartCoroutine(WriteText());
     }
 
