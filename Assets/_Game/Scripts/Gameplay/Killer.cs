@@ -14,7 +14,8 @@ public class Killer : MonoBehaviour
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Door door;
     [SerializeField] private Sprite [] runKiller; 
-    [SerializeField] private Sprite IdleKiller; 
+    [SerializeField] private Sprite IdleKiller;
+    [SerializeField] private AudioSource gunshotAudio;
     private SpriteRenderer spriteRenderer;
 
     void Awake()
@@ -33,7 +34,10 @@ public class Killer : MonoBehaviour
     {
         if (door != null)
         {
-            transform.position = new Vector2(door.transform.position.x, transform.position.y);
+            transform.position = new Vector2(
+                door.transform.position.x,
+                transform.position.y
+            );
         }
 
         yield return new WaitForSeconds(waitBehindDoor);
@@ -45,12 +49,19 @@ public class Killer : MonoBehaviour
 
         while (transform.position.x > stopX)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(stopX, transform.position.y), enterSpeed * Time.deltaTime);
-           spriteRenderer.sprite = runKiller[(int)(Time.time / 0.15f) % runKiller.Length];
-            
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                new Vector2(stopX, transform.position.y),
+                enterSpeed * Time.deltaTime
+            );
+
+            spriteRenderer.sprite =
+                runKiller[(int)(Time.time / 0.15f) % runKiller.Length];
+
             yield return null;
         }
 
+        
         yield return new WaitForSeconds(aimTime);
         if(LoopManager.Instance.Escaped)
         {
@@ -62,6 +73,7 @@ public class Killer : MonoBehaviour
 
         if (protagonist != null)
         {
+            gunshotAudio.Play();
             protagonist.Die();
         }
 

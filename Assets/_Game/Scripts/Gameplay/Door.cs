@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Vector2 topRight;
     [SerializeField] private Vector2 bottomLeft;
     [SerializeField] private Vector2 bottomRight;
+    [SerializeField] private AudioSource doorAudio;
     private Mesh mesh;
     private Sprite current;
 
@@ -32,6 +33,11 @@ public class Door : MonoBehaviour
     {
         current = openSprite;
         UpdateTexture();
+
+        if (Application.isPlaying && doorAudio != null)
+        {
+            doorAudio.Play();
+        }
     }
 
     public void Close()
