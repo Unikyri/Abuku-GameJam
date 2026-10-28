@@ -7,8 +7,9 @@ public class Killer : MonoBehaviour
     [SerializeField] private float stopX = 3.5f;
     [SerializeField] private float stopY = 0;
     [SerializeField] private float aimTime = 0.6f;
-    [SerializeField] private float flashTime = 0.15f;
+    [SerializeField] private float deathDelay = 0.6f;
     [SerializeField] private float waitBehindDoor = 1f;
+    [SerializeField] private ProtagonistAnimation protagonist;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Door door;
     private SpriteRenderer spriteRenderer;
@@ -49,7 +50,13 @@ public class Killer : MonoBehaviour
 
         spriteRenderer.color = new Color(0.7f, 0.1f, 0.1f);
         muzzleFlash.SetActive(true);
-        yield return new WaitForSeconds(flashTime);
+
+        if (protagonist != null)
+        {
+            protagonist.Die();
+        }
+
+        yield return new WaitForSeconds(deathDelay);
 
         Time.timeScale = 0f;
     }

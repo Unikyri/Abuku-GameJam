@@ -34,6 +34,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public bool IsMoving
+    {
+        get { return moving; }
+    }
+
+    public void Stop()
+    {
+        moving = false;
+        pendingObject = null;
+    }
+
     public void MoveTo(Vector2 pos)
     {
         float y = Mathf.Min(pos.y, maxY);
