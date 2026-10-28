@@ -12,6 +12,8 @@ public class Killer : MonoBehaviour
     [SerializeField] private ProtagonistAnimation protagonist;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Door door;
+    [SerializeField] private Sprite [] runKiller; 
+    [SerializeField] private Sprite IdleKiller; 
     private SpriteRenderer spriteRenderer;
 
     void Awake()
@@ -43,13 +45,18 @@ public class Killer : MonoBehaviour
         while (transform.position.x > stopX)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(stopX, transform.position.y), enterSpeed * Time.deltaTime);
+            
+            spriteRenderer.sprite = runKiller[0];
+            spriteRenderer.sprite = runKiller[1];
+            
             yield return null;
         }
 
         yield return new WaitForSeconds(aimTime);
 
-        spriteRenderer.color = new Color(0.7f, 0.1f, 0.1f);
-        muzzleFlash.SetActive(true);
+        //spriteRenderer.color = new Color(0.7f, 0.1f, 0.1f);
+      
+        spriteRenderer.sprite = IdleKiller;
 
         if (protagonist != null)
         {

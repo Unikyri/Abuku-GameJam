@@ -5,7 +5,7 @@ public class LoopManager : MonoBehaviour
 {
     public static LoopManager Instance;
     public static int loopCount = 0;
-    [SerializeField] private float timeUntilKiller = 30f;
+    [SerializeField] private float timeUntilKiller = 10f;
     private bool escaped;
     
     void Awake()
@@ -38,5 +38,13 @@ public class LoopManager : MonoBehaviour
         if (!escaped) return;
         var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 32 };
         GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "You survived!", style);
+    }
+    void Update()
+    {
+       void Update()
+{
+    if (Time.frameCount % 60 == 0)
+        Debug.Log("t=" + Time.timeSinceLevelLoad + "  timeScale=" + Time.timeScale + "  pendiente=" + IsInvoking(nameof(PlayerKilled)));
+}
     }
 }
